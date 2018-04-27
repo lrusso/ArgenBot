@@ -9,4 +9,4 @@ Realiza las siguientes tareas todos los días a las 7 de la mañana.
 - Actualización de la suite ofimática TinyMCE.
 - Eliminación de archivos temporales.
 
-Las configuraciones son especificadas en los archivos .cfg y el reporte del bot es presentado como contenido HTMl en el archivo Results.dat.
+Las configuraciones son especificadas en los archivos .cfg y el reporte del bot es presentado como contenido HTML en el archivo Results.dat.
