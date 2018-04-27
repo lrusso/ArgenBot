@@ -287,7 +287,7 @@ function actualizarTinyMCE($a)
 	}
 
 // ----------------------------------------------------------------------------------------------------------------
-// CRON JOB 1 - SE VERIFICA SI HAY UNA NUEVA VERSION DE TINYMCE Y LA INSTALA (DE SER EL CASO)
+// TAREA 1 - SE VERIFICA SI HAY UNA NUEVA VERSION DE TINYMCE Y LA INSTALA (DE SER EL CASO)
 // ----------------------------------------------------------------------------------------------------------------
 
 if ($horaActual==$horaDeEjecucion || $_GET[tinymce]=="true")
@@ -343,7 +343,7 @@ if ($horaActual==$horaDeEjecucion || $_GET[tinymce]=="true")
 	}
 
 // ----------------------------------------------------------------------------------------------------------------
-// CRON JOB 2 - SE BUSCAN CAMBIOS EN LAS MARCAS REGISTRADAS
+// TAREA 2 - SE BUSCAN CAMBIOS EN LAS MARCAS REGISTRADAS
 // ----------------------------------------------------------------------------------------------------------------
 
 if ($horaActual==$horaDeEjecucion_Consultas_INPI)
@@ -361,7 +361,7 @@ if ($horaActual==$horaDeEjecucion_Consultas_INPI)
 	}
 
 // ----------------------------------------------------------------------------------------------------------------
-// CRON JOB 3 - SE BUSCAN POSIBLES NOMBRES SIMILARES DE LAS MARCAS REGISTRADAS
+// TAREA 3 - SE BUSCAN POSIBLES NOMBRES SIMILARES DE LAS MARCAS REGISTRADAS
 // ----------------------------------------------------------------------------------------------------------------
 
 if ($horaActual==$horaDeEjecucion_Consultas_INPI)
@@ -379,7 +379,7 @@ if ($horaActual==$horaDeEjecucion_Consultas_INPI)
 	}
 
 // ----------------------------------------------------------------------------------------------------------------
-// CRON JOB 4 - SE BUSCA SI CAMBIO LA COMISION DE MERCADOLIBRE
+// TAREA 4 - SE BUSCA SI CAMBIO LA COMISION DE MERCADOLIBRE
 // ----------------------------------------------------------------------------------------------------------------
 
 if ($horaActual==$horaDeEjecucion)
@@ -414,7 +414,7 @@ if ($horaActual==$horaDeEjecucion)
 	}
 
 // ----------------------------------------------------------------------------------------------------------------
-// CRON JOB 5 - ELIMINA EL CONTENIDO DE CARPETAS CON ARCHIVOS TEMPORALES
+// TAREA 5 - ELIMINA EL CONTENIDO DE CARPETAS CON ARCHIVOS TEMPORALES
 // ----------------------------------------------------------------------------------------------------------------
 
 $carpetas = []; 
@@ -433,7 +433,7 @@ foreach ($carpetas as $valor)
 	}
 
 // ----------------------------------------------------------------------------------------------------------------
-// CRON JOB 6 - ELIMINA LOS ARCHIVOS DE ERRORES GENERADOS POR EL SERVIDOR
+// TAREA 6 - ELIMINA LOS ARCHIVOS DE ERRORES GENERADOS POR EL SERVIDOR
 // ----------------------------------------------------------------------------------------------------------------
 
 $files = glob("error_log");
@@ -442,6 +442,4 @@ foreach($files as $file)
 	{
 	unlink($file);
 	}
-
-echo "Tareas programadas ejecutadas correctamente.";
 ?>
