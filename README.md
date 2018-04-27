@@ -2,7 +2,7 @@
 
 Bot de mantenimiento de servidores y control de marcas.
 
-![alt text] https://raw.githubusercontent.com/lrusso/ArgenBot/master/ArgenBot.png
+![alt ArgenBot](https://raw.githubusercontent.com/lrusso/ArgenBot/master/ArgenBot.png)
 
 Realiza las siguientes tareas todos los días a las 7 de la mañana.
 
