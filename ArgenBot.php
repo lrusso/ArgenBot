@@ -21,7 +21,7 @@ function doGET_PHP($a){$options=array("http"=>array("method"=>"GET","header"=>"A
 function doGET_MercadoLibre($url){$options = array(CURLOPT_RETURNTRANSFER => true, CURLOPT_HEADER => false, CURLOPT_FOLLOWLOCATION => true, CURLOPT_MAXREDIRS => 10, CURLOPT_ENCODING => "", CURLOPT_USERAGENT => "test", CURLOPT_AUTOREFERER => true, CURLOPT_CONNECTTIMEOUT => 120, CURLOPT_TIMEOUT => 120);$ch = curl_init($url);curl_setopt_array($ch, $options);$content  = curl_exec($ch);curl_close($ch);return $content;}
 function doPOST_CURL($url,$postvalues){$ch=curl_init($url);curl_setopt($ch,CURLOPT_USERAGENT,$agent);curl_setopt($ch,CURLOPT_HTTPHEADER,["Accept-Language: " . $lang]);curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);curl_setopt($ch,CURLOPT_FOLLOWLOCATION,1);curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,0);curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,0);curl_setopt($ch,CURLOPT_POST,true);curl_setopt($ch,CURLOPT_POSTFIELDS,$postvalues);$data=curl_exec($ch);curl_close($ch);return $data;}
 function doPOST_PHP($a,$b){$options=array("http"=>array("method"=>"POST","header"=>"Accept-language: es\r\n"."Content-type: application/x-www-form-urlencoded\r\n"."Cookie: foo=bar\r\n"."User-Agent: " . $agent . "\r\n","content"=>$b));$context=stream_context_create($options);$responseData=file_get_contents($a,false,$context);return $responseData;}
-function informar($a){$fechaInformeDia=date("d");$fechaInformeMes=date("m");if($fechaInformeMes=="01"){$fechaInformeMes="Ene";}else if($fechaInformeMes=="02"){$fechaInformeMes="Feb";}else if($fechaInformeMes=="03"){$fechaInformeMes="Mar";}else if($fechaInformeMes=="04"){$fechaInformeMes="Abr";}else if($fechaInformeMes=="05"){$fechaInformeMes="May";}else if($fechaInformeMes=="06"){$fechaInformeMes="Jun";}else if($fechaInformeMes=="07"){$fechaInformeMes="Jul";}else if($fechaInformeMes=="08"){$fechaInformeMes="Ago";}else if($fechaInformeMes=="09"){$fechaInformeMes="Sep";}else if($fechaInformeMes=="10"){$fechaInformeMes="Oct";}else if($fechaInformeMes=="11"){$fechaInformeMes="Nov";}else if($fechaInformeMes=="12"){$fechaInformeMes="Dic";}$fechaInformeAno=date("Y");$fechaInforme=$fechaInformeDia."/".$fechaInformeMes."/".$fechaInformeAno;$valor=$fechaInforme." - ".$a;$myfile=fopen("system/cronJobs_Results.dat","r");$valorOriginal=fread($myfile,filesize("system/cronJobs_Results.dat"));fclose($myfile);if(strlen($valorOriginal)>0){$valorOriginal=$valorOriginal."\n";}$myfile=fopen("system/cronJobs_Results.dat","w");fwrite($myfile,$valorOriginal.$valor);fclose($myfile);}
+function informar($a){$fechaInformeDia=date("d");$fechaInformeMes=date("m");if($fechaInformeMes=="01"){$fechaInformeMes="Ene";}else if($fechaInformeMes=="02"){$fechaInformeMes="Feb";}else if($fechaInformeMes=="03"){$fechaInformeMes="Mar";}else if($fechaInformeMes=="04"){$fechaInformeMes="Abr";}else if($fechaInformeMes=="05"){$fechaInformeMes="May";}else if($fechaInformeMes=="06"){$fechaInformeMes="Jun";}else if($fechaInformeMes=="07"){$fechaInformeMes="Jul";}else if($fechaInformeMes=="08"){$fechaInformeMes="Ago";}else if($fechaInformeMes=="09"){$fechaInformeMes="Sep";}else if($fechaInformeMes=="10"){$fechaInformeMes="Oct";}else if($fechaInformeMes=="11"){$fechaInformeMes="Nov";}else if($fechaInformeMes=="12"){$fechaInformeMes="Dic";}$fechaInformeAno=date("Y");$fechaInforme=$fechaInformeDia."/".$fechaInformeMes."/".$fechaInformeAno;$valor=$fechaInforme." - ".$a;$myfile=fopen("Results.dat","r");$valorOriginal=fread($myfile,filesize("Results.dat"));fclose($myfile);if(strlen($valorOriginal)>0){$valorOriginal=$valorOriginal."\n";}$myfile=fopen("Results.dat","w");fwrite($myfile,$valorOriginal.$valor);fclose($myfile);}
 
 // ----------------------------------------------------------------------------------------------------------------
 // FUNCION DE BUSQUEDA DE MOVIMIENTOS DE MARCAS REGISTRADAS
@@ -42,13 +42,13 @@ function buscar_Marcas_Movimientos($a, $b, $c)
 			if(strlen($response)>$b OR strlen($response)<$b)
 				{
 				// ABRE EL ARCHIVO DE LA BASE DE DATOS PARA REEMPLAZAR LOS VALORES ENCONTRADOS POR LOS NUEVOS
-				$myfile = fopen("BrandsRegistered.dat", "r");
-				$database_marcas = fread($myfile,filesize("BrandsRegistered.dat"));
+				$myfile = fopen("BrandsRegistered.cfg", "r");
+				$database_marcas = fread($myfile,filesize("BrandsRegistered.cfg"));
 				$database_marcas = str_replace($a . "|" . $b . "|" . $c, $a . "|" . strlen($response) . "|" . $c, $database_marcas);
 				fclose($myfile);
 
 				// ACTUALIZA EL ARCHIVO LA BASE DE DATOS
-				$myfile = fopen("BrandsRegistered.dat", "w");
+				$myfile = fopen("BrandsRegistered.cfg", "w");
 				fwrite($myfile, $database_marcas);
 				fclose($myfile);
 				chmod($myfile, 0644);
@@ -91,13 +91,13 @@ function buscar_Marcas_Nuevas($a, $b)
 					if (is_numeric($valorFinal)==true)
 						{
 						// ABRE LA BASE DE DATOS PARA REEMPLAZAR LOS VALORES ENCONTRADOS POR LOS NUEVOS
-						$myfile = fopen("BrandsSearch.dat", "r");
-						$database_marcas = fread($myfile,filesize("BrandsSearch.dat"));
+						$myfile = fopen("BrandsSearch.cfg", "r");
+						$database_marcas = fread($myfile,filesize("BrandsSearch.cfg"));
 						$database_marcas = str_replace($a . "|" . $b, $a . "|" . $valorFinal, $database_marcas);
 						fclose($myfile);
 
 						// ACTUALIZA EL ARCHIVO LA BASE DE DATOS
-						$myfile = fopen("BrandsSearch.dat", "w");
+						$myfile = fopen("BrandsSearch.cfg", "w");
 						fwrite($myfile, $database_marcas);
 						fclose($myfile);
 						chmod($myfile, 0644);
@@ -254,7 +254,7 @@ function actualizarTinyMCE($a)
 						fclose($myfile);
 
 						// ACTUALIZA EL .dat CON LA URL DE LA ULTIMA VERSION PARA FUTURAS REFERENCIAS
-						$myfile = fopen("TinyMCE.dat", "w");
+						$myfile = fopen("TinyMCE.cfg", "w");
 						fwrite($myfile, $a);
 						fclose($myfile);
 
@@ -293,8 +293,8 @@ function actualizarTinyMCE($a)
 if ($horaActual==$horaDeEjecucion || $_GET[tinymce]=="true")
 	{
 	// OBTIENE LA ULTIMA URL DEL ZIP DE TINYMCE ALMACENADA EN EL SERVIDOR LOCAL
-	$myfile = fopen("TinyMCE.dat", "r");
-	$tinyMCE_Buscar = fread($myfile,filesize("TinyMCE.dat"));
+	$myfile = fopen("TinyMCE.cfg", "r");
+	$tinyMCE_Buscar = fread($myfile,filesize("TinyMCE.cfg"));
 	fclose($myfile);
 
 	// ESTABLECE LA VARIABLE DONDE SE DEFINIRA LA ULTIMA URL DE LA ULTIMA VERSION DE TINYMCE
@@ -348,8 +348,8 @@ if ($horaActual==$horaDeEjecucion || $_GET[tinymce]=="true")
 
 if ($horaActual==$horaDeEjecucion_Consultas_INPI)
 	{
-	$myfile = fopen("BrandsRegistered.dat", "r");
-	$database_marcas = fread($myfile,filesize("BrandsRegistered.dat"));
+	$myfile = fopen("BrandsRegistered.cfg", "r");
+	$database_marcas = fread($myfile,filesize("BrandsRegistered.cfg"));
 	$database_marcas_array = explode("\n", $database_marcas);
 	fclose($myfile);
 
@@ -366,8 +366,8 @@ if ($horaActual==$horaDeEjecucion_Consultas_INPI)
 
 if ($horaActual==$horaDeEjecucion_Consultas_INPI)
 	{
-	$myfile = fopen("BrandsSearch.dat", "r");
-	$database_marcas = fread($myfile,filesize("BrandsSearch.dat"));
+	$myfile = fopen("BrandsSearch.cfg", "r");
+	$database_marcas = fread($myfile,filesize("BrandsSearch.cfg"));
 	$database_marcas_array = explode("\n", $database_marcas);
 	fclose($myfile);
 
@@ -384,8 +384,8 @@ if ($horaActual==$horaDeEjecucion_Consultas_INPI)
 
 if ($horaActual==$horaDeEjecucion)
 	{
-	$myfile = fopen("MercadoLibre.dat", "r");
-	$porcentajeML = fread($myfile,filesize("MercadoLibre.dat"));
+	$myfile = fopen("MercadoLibre.cfg", "r");
+	$porcentajeML = fread($myfile,filesize("MercadoLibre.cfg"));
 	fclose($myfile);
 
 	$response = doGET_MercadoLibre("https://www.mercadolibre.com.ar/ayuda/Costos-de-vender-un-producto_870");
@@ -400,7 +400,7 @@ if ($horaActual==$horaDeEjecucion)
 			$comisionActual = substr($parte1, strrpos($parte1,">") + 1);
 			if (is_numeric($comisionActual)==true)
 				{
-				$myfile = fopen("MercadoLibre.dat", "w");
+				$myfile = fopen("MercadoLibre.cfg", "w");
 				fwrite($myfile, $comisionActual);
 				fclose($myfile);
 				informar("CAMBI&Oacute; LA COMISI&Oacute;N DE MERCADOLIBRE. <a href='https://www.mercadolibre.com.ar/ayuda/Costos-de-vender-un-producto_870' target='top'>CONSULTAR</a>");
