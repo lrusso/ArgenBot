@@ -2,7 +2,7 @@
 
 ![alt ArgenBot](https://raw.githubusercontent.com/lrusso/ArgenBot/master/ArgenBot.png)
 
-Realiza las siguientes tareas todos los días a las 7 de la mañana.
+El bot realiza las siguientes tareas todos los días a las 7 de la mañana:
 
 - Búsqueda de marcas registradas y marcas con nombres similares.
 - Búsqueda de cambios en la comisión de MercadoLibre.
