@@ -1,4 +1,4 @@
-# ArgenBot: Bot de mantenimiento de servidores y control de marcas
+# ArgenBot: Bot para automatización de servidores
 
 ![alt ArgenBot](https://raw.githubusercontent.com/lrusso/ArgenBot/master/ArgenBot.png)
 
